@@ -2,6 +2,7 @@ from transformers import BertTokenizer, TFBertModel
 import pandas
 import os
 from FAQ.faq_match import FAQ_match
+import json
 
 if __name__ == "__main__":
     match = FAQ_match()
@@ -17,7 +18,8 @@ if __name__ == "__main__":
         if message != 'quit':
             #             time1 = datetime.datetime.now()
             result = match.faq_match(message)
-            print('answer: {}'.format(result))
+            result = json.loads(result[1])
+            print('answer: {}'.format(result['text']))
             #result = faq_match.judge_similar(message, faq_match.faq_qus, faq_match.faq_ans)
             # print(result[1])
 #             time2= datetime.datetime.now()
